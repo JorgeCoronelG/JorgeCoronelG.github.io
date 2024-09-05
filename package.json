@@ -1,0 +1,14 @@
+{
+  "name": "portafolio-web",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tailwindcss -i input.css -o ./css/style.css",
+    "watch": "tailwindcss -i input.css -o ./css/style.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
