@@ -5,14 +5,21 @@ const moon = document.querySelector('#moon');
 const body = document.querySelector('body');
 const hLinks = document.querySelectorAll('.hLink');
 
+const technologies = document.querySelectorAll('.technologies');
+const lightFolder = 'light';
+const darkFolder = 'dark';
+
 // Modo oscuro activado
-/*const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+let prefersDarkScheme = false;
+/*let prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 if (prefersDarkScheme) {
   body.classList.toggle('dark');
-}*/
+}
 
-hamburger.addEventListener('click', ()=> {
+changeFolderTechnologies(prefersDarkScheme);*/
+
+hamburger.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 
   hamburgerLines.forEach((line) => {
@@ -23,8 +30,8 @@ hamburger.addEventListener('click', ()=> {
   });
 });
 
-hLinks.forEach(link=> {
-  link.addEventListener('click', ()=> {
+hLinks.forEach(link => {
+  link.addEventListener('click', () => {
     menu.classList.toggle('hidden');
     hamburgerLines.forEach((line) => {
       line.classList.remove('bg-white');
@@ -33,6 +40,22 @@ hLinks.forEach(link=> {
   })
 });
 
-moon.addEventListener('click', ()=> {
+moon.addEventListener('click', () => {
   body.classList.toggle('dark');
+  prefersDarkScheme = !prefersDarkScheme;
+  changeFolderTechnologies(prefersDarkScheme);
 });
+
+/**
+ * Método para cambiar el folder (light/dark) de las tecnologías
+ * @param boolean isDark
+ */
+function changeFolderTechnologies(isDark) {
+  technologies.forEach(img => {
+    const src = (isDark)
+      ? img.src.replace('light', 'dark')
+      : img.src.replace('dark', 'light');
+
+    img.src = src;
+  });
+}
