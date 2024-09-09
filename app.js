@@ -10,14 +10,13 @@ const lightFolder = 'light';
 const darkFolder = 'dark';
 
 // Modo oscuro activado
-let prefersDarkScheme = false;
-/*let prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+let prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 if (prefersDarkScheme) {
   body.classList.toggle('dark');
 }
 
-changeFolderTechnologies(prefersDarkScheme);*/
+changeFolderTechnologies(prefersDarkScheme);
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('hidden');
