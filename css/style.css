@@ -658,6 +658,11 @@ video {
   margin-bottom: auto;
 }
 
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
@@ -1266,6 +1271,11 @@ video {
     margin-bottom: 2.5rem;
   }
 
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .md\:mb-10 {
     margin-bottom: 2.5rem;
   }
@@ -1321,6 +1331,11 @@ video {
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .md\:text-6xl {
