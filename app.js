@@ -9,6 +9,8 @@ const technologies = document.querySelectorAll('.technologies');
 const lightFolder = 'light';
 const darkFolder = 'dark';
 
+const logo = document.querySelector('#logo');
+
 // Modo oscuro activado
 let prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -17,6 +19,7 @@ if (prefersDarkScheme) {
 }
 
 changeFolderTechnologies(prefersDarkScheme);
+changeFolderLogo(prefersDarkScheme);
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('hidden');
@@ -43,6 +46,7 @@ moon.addEventListener('click', () => {
   body.classList.toggle('dark');
   prefersDarkScheme = !prefersDarkScheme;
   changeFolderTechnologies(prefersDarkScheme);
+  changeFolderLogo(prefersDarkScheme);
 });
 
 /**
@@ -57,4 +61,12 @@ function changeFolderTechnologies(isDark) {
 
     img.src = src;
   });
+}
+
+function changeFolderLogo(isDark) {
+  const src = (isDark)
+  ? logo.src.replace('light', 'dark')
+  : logo.src.replace('dark', 'light');
+
+  logo.src = src;
 }
