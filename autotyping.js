@@ -119,7 +119,7 @@ var AutoTyping = (function (e) {
 ]).default;
 
 
-const text = ['Frontend', 'Backend', 'Móvil'];
+const text = ['Fullstack', 'Frontend', 'Backend'];
 const typing = new AutoTyping('#text', text, {
     typeSpeed: 100,
     deleteSpeed: 100,
