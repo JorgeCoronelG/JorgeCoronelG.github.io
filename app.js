@@ -18,17 +18,18 @@ if (prefersDarkScheme) {
   body.classList.toggle('dark');
 }
 
-changeFolderTechnologies(prefersDarkScheme);
-changeFolderLogo(prefersDarkScheme);
+changeLightDarkMode(prefersDarkScheme);
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('hidden');
 
-  hamburgerLines.forEach((line) => {
-    const removeClass = (line.classList.contains('bg-black')) ? 'bg-black' : 'bg-white';
-    const addClass = (removeClass === 'bg-black') ? 'bg-white' : 'bg-black';
-    line.classList.remove(removeClass);
-    line.classList.add(addClass);
+  hamburgerLines.forEach(line => {
+    if (!prefersDarkScheme) {
+      const removeClass = (line.classList.contains('bg-black')) ? 'bg-black' : 'bg-white';
+      const addClass = (removeClass === 'bg-black') ? 'bg-white' : 'bg-black';
+      line.classList.remove(removeClass);
+      line.classList.add(addClass);
+    }
   });
 });
 
@@ -45,9 +46,15 @@ hLinks.forEach(link => {
 moon.addEventListener('click', () => {
   body.classList.toggle('dark');
   prefersDarkScheme = !prefersDarkScheme;
-  changeFolderTechnologies(prefersDarkScheme);
-  changeFolderLogo(prefersDarkScheme);
+
+  changeLightDarkMode(prefersDarkScheme);
 });
+
+function changeLightDarkMode(isDark) {
+  changeFolderTechnologies(isDark);
+  changeFolderLogo(isDark);
+  changeColorHamburgerMenu(isDark);
+}
 
 /**
  * Método para cambiar el folder (light/dark) de las tecnologías
@@ -69,4 +76,12 @@ function changeFolderLogo(isDark) {
   : logo.src.replace('dark', 'light');
 
   logo.src = src;
+}
+
+function changeColorHamburgerMenu(isDark) {
+  const className = (isDark) ? 'bg-white' : 'bg-black';
+  hamburgerLines.forEach(line => {
+    line.classList.remove(['bg-black', 'bg-white']);
+    line.classList.add(className);
+  });
 }
