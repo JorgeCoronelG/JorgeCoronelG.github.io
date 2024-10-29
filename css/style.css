@@ -961,6 +961,11 @@ video {
   padding-right: 0.75rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1270,6 +1275,10 @@ video {
 
   .md\:justify-evenly {
     justify-content: space-evenly;
+  }
+
+  .md\:gap-5 {
+    gap: 1.25rem;
   }
 
   .md\:p-0 {
