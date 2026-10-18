@@ -63,7 +63,7 @@ export const projects: Project[] = [
     description:
       'Práctica del curso Angular Pro (DevTalles): calculadora con signals, componentes standalone y modo zoneless, con pruebas.',
     image: zonelessCalculator,
-    imageAlt: 'Calculadora zoneless',
+    imageAlt: 'Captura de la calculadora Angular',
     tags: ['Angular', 'Tailwind CSS', 'Karma / Jasmine'],
     links: [{ label: 'GitHub', href: 'https://github.com/JorgeCoronelG/calculadora-angular-pro' }],
   },
