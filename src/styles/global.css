@@ -1,1 +1,87 @@
 @import "tailwindcss";
+@import "@fontsource/carlito/400.css";
+@import "@fontsource/carlito/700.css";
+@import "@fontsource/caladea/700.css";
+
+@theme {
+  --color-bg: #f7f7f5;
+  --color-ink: #16222e;
+  --color-muted: #606874;
+  --color-accent: #1e468c;
+  --color-line: #dee1e6;
+  --color-soft: #c9d3e3;
+  --color-chip: #eef0f4;
+  --color-chip-accent: #e8eef8;
+  --color-card: #ffffff;
+  --color-placeholder: #e9ecf0;
+  --color-placeholder-ink: #8c94a0;
+  --color-btn-line: #b0b7c1;
+
+  --font-sans: "Carlito", Lato, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Caladea", Cambo, Georgia, serif;
+
+  --text-h1: 6.25rem;
+  --text-h2: 3.625rem;
+  --shadow-card: 0 6px 28px rgba(22, 34, 46, 0.1);
+  --shadow-card-hover: 0 12px 36px rgba(22, 34, 46, 0.16);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-page {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-10 lg:px-24;
+  }
+  @utility btn {
+    @apply inline-flex h-14 items-center justify-center rounded-full px-7 text-[19px] font-bold transition-colors;
+  }
+  @utility btn-primary {
+    @apply btn bg-ink text-bg hover:bg-accent;
+  }
+  @utility btn-secondary {
+    @apply btn border-2 border-btn-line text-ink hover:border-ink;
+  }
+  @utility chip {
+    @apply inline-flex h-7 items-center rounded-full bg-chip px-3 text-sm text-muted;
+  }
+  @utility chip-accent {
+    @apply inline-flex items-center rounded-full border-2 border-accent bg-chip-accent font-bold text-accent;
+  }
+  @utility link-ext {
+    @apply font-bold text-accent hover:underline;
+  }
+
+/* Aparición al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,20 @@
+---
+import { projects } from '../data/projects';
+import { site } from '../data/site';
+import ProjectCard from './ProjectCard.astro';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="proyectos" data-nav="proyectos" aria-labelledby="proyectos-titulo" class="container-page py-16 lg:py-24">
+  <SectionHeading id="proyectos-titulo" eyebrow="Proyectos" title="Lo que he construido" subtitle="Proyectos personales y de práctica, con el código disponible." />
+  <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {projects.map((p) => <ProjectCard project={p} />)}
+    <article class="reveal flex flex-col items-center justify-center rounded-[20px] border-2 border-btn-line bg-bg p-8 text-center">
+      <h3 class="font-serif text-[25px]">Más proyectos</h3>
+      <p class="mt-2 text-base text-muted">Código y experimentos en GitHub</p>
+      <a href={site.github} class="link-ext mt-4" target="_blank" rel="noopener noreferrer">
+        github.com/JorgeCoronelG <span aria-hidden="true">↗</span>
+      </a>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import { navLinks } from '../data/site';
+import Logo from './Logo.astro';
+---
+
+<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur">
+  <div class="container-page flex h-20 items-center justify-between">
+    <a href="#inicio" aria-label="Jorge Coronel, ir al inicio"><Logo /></a>
+
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex gap-8 text-lg text-muted">
+        {
+          navLinks.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                data-nav-link={l.href.slice(1)}
+                class="border-b-2 border-transparent pb-1 transition-colors hover:text-ink aria-[current]:border-accent aria-[current]:text-ink"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="menu-movil"
+      aria-label="Abrir menú"
+      class="grid size-11 place-items-center rounded-full md:hidden"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav id="menu-movil" data-menu aria-label="Menú móvil" class="hidden border-t border-line bg-bg md:hidden">
+    <ul class="container-page flex flex-col py-2 text-lg">
+      {
+        navLinks.map((l) => (
+          <li>
+            <a href={l.href} data-nav-link={l.href.slice(1)} class="block py-3 text-muted aria-[current]:font-bold aria-[current]:text-ink">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

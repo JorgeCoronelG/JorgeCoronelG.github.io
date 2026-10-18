@@ -1,0 +1,41 @@
+---
+import { experience } from '../data/experience';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="experiencia" data-nav="experiencia" aria-labelledby="experiencia-titulo" class="container-page py-16 lg:py-24">
+  <SectionHeading id="experiencia-titulo" eyebrow="Experiencia" title="Dónde he trabajado" subtitle="Más de 6 años desarrollando sistemas web completos." />
+  <ol class="mt-12">
+    {
+      experience.map((job, i) => (
+        <li class="reveal relative grid gap-1 pb-12 pl-8 sm:pl-0 md:grid-cols-[250px_1fr] md:gap-0">
+          <span class="absolute bottom-0 left-[7px] top-2 w-0.5 bg-soft md:left-[250px] md:ml-[38px]" aria-hidden="true" />
+          <span
+            class:list={['absolute left-0 top-2 size-4 rounded-full border-[3px] border-accent md:left-[250px] md:ml-[31px]', i === 0 ? 'bg-accent' : 'bg-bg']}
+            aria-hidden="true"
+          />
+          <p class="text-[17px] font-bold md:pr-16 md:pt-2 md:text-right">{job.period}</p>
+          <div class="md:pl-20">
+            <h3 class="font-serif text-2xl sm:text-[28px]">{job.role}</h3>
+            <p class="mt-1 text-base text-muted">
+              <span class="font-bold text-accent">{job.company}</span> · {job.location}
+            </p>
+            <ul class="mt-3 space-y-2 text-base text-muted">
+              {
+                job.highlights.map((h) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-soft" aria-hidden="true" />
+                    {h}
+                  </li>
+                ))
+              }
+            </ul>
+            <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
+              {job.tags.map((t) => <li class="chip">{t}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>

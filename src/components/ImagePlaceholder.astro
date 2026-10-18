@@ -1,0 +1,31 @@
+---
+interface Props {
+  label: string;
+  hint?: string;
+  window?: boolean;
+  class?: string;
+}
+const { label, hint, window: browser = false, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['flex flex-col items-center justify-center bg-placeholder text-center text-placeholder-ink', className]}
+  role="img"
+  aria-label={label}
+>
+  {
+    browser && (
+      <div class="mb-4 w-3/5" aria-hidden="true">
+        <div class="mb-2 flex gap-1.5">
+          <span class="size-2 rounded-full bg-btn-line" />
+          <span class="size-2 rounded-full bg-btn-line" />
+          <span class="size-2 rounded-full bg-btn-line" />
+        </div>
+        <div class="h-2.5 w-full rounded bg-line" />
+        <div class="mt-2 h-2.5 w-2/3 rounded bg-line" />
+      </div>
+    )
+  }
+  <span class="text-base">{label}</span>
+  {hint && <span class="mt-1 text-sm">{hint}</span>}
+</div>

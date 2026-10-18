@@ -1,43 +1,79 @@
-# Astro Starter Kit: Minimal
+# Portafolio web – Jorge Coronel
+
+Portafolio web personal construido con [Astro](https://astro.build) y Tailwind CSS.
+
+## Requisitos
+
+- [Docker](https://docs.docker.com/get-docker/)
+
+No es necesario tener Node.js instalado; todo se ejecuta dentro de un contenedor con `node:22`.
+
+Todos los comandos se ejecutan desde la raíz del proyecto.
+
+## Ejecutar el proyecto (desarrollo)
+
+Levanta el servidor de desarrollo en <http://localhost:4321>. Las dependencias se guardan en un volumen de Docker (`portafolio-node-modules`) para no mezclar los binarios de Linux con los de tu máquina.
 
 ```sh
-npm create astro@latest -- --template minimal
+docker run -d --name portafolio \
+  -p 4321:4321 \
+  -v "$(pwd)":/app \
+  -v portafolio-node-modules:/app/node_modules \
+  -w /app \
+  node:22 \
+  sh -c "npm install && npm run dev -- --host 0.0.0.0"
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Ver los logs (útil para saber cuándo terminó `npm install`):
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+docker logs -f portafolio
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Generar el build de producción
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Genera el sitio estático en `./dist/`:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+docker run --rm \
+  -v "$(pwd)":/app \
+  -v portafolio-node-modules:/app/node_modules \
+  -w /app \
+  node:22 \
+  sh -c "npm install && npm run build"
+```
 
-## 🧞 Commands
+## Detener el proyecto
 
-All commands are run from the root of the project, from a terminal:
+```sh
+docker stop portafolio
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Para volver a iniciarlo:
 
-## 👀 Want to learn more?
+```sh
+docker start portafolio
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Bajar el proyecto y limpiar los datos
+
+Elimina el contenedor, el volumen con las dependencias y la imagen descargada:
+
+```sh
+# Detener y eliminar el contenedor
+docker rm -f portafolio
+
+# Eliminar el volumen de node_modules
+docker volume rm portafolio-node-modules
+
+# Eliminar la imagen de Node (opcional)
+docker rmi node:22
+```
+
+Para limpiar también los archivos generados en el proyecto:
+
+```sh
+rm -rf dist .astro
+```
+
+> Si usas la imagen `node:22` en otros proyectos, omite el último `docker rmi`.

@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '../data/site';
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
+---
+
+<section id="inicio" data-nav="inicio" class="container-page grid items-center gap-12 py-12 lg:grid-cols-[1fr_auto] lg:py-20">
+  <div class="reveal">
+    <p class="flex items-center gap-4 text-[22px] font-bold tracking-wide text-accent">
+      <span class="h-[3px] w-9 bg-accent" aria-hidden="true"></span>Hola, soy Jorge
+    </p>
+    <h1 class="mt-6 font-serif text-[3.25rem] leading-[1.05] sm:text-7xl lg:text-h1">
+      Desarrollador<br />Fullstack
+    </h1>
+    <p class="mt-6 max-w-xl text-xl text-muted sm:text-[27px] sm:leading-snug">
+      Construyo sistemas web y APIs con Laravel y Angular.
+    </p>
+    <div class="mt-9 flex flex-wrap gap-3">
+      <a href={site.cv} class="btn-primary" download>Descargar CV</a>
+      <a href={site.github} class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={site.linkedin} class="btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="reveal relative mx-auto w-[220px] sm:w-[300px] lg:w-[380px]">
+    <div class="absolute inset-0 translate-x-5 translate-y-5 rounded-[30px] border-2 border-soft" aria-hidden="true"></div>
+    {
+      photo ? (
+        <Image src={photo} alt="Retrato de Jorge Coronel" width={760} class="relative aspect-[9/16] w-full rounded-[30px] object-cover" loading="eager" />
+      ) : (
+        <ImagePlaceholder label="Tu foto aquí" hint="Formato 9:16 · 1080 × 1920 px" class="relative aspect-[9/16] w-full rounded-[30px]" />
+      )
+    }
+  </div>
+</section>
