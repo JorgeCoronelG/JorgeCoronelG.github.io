@@ -39,7 +39,7 @@ export const projects: Project[] = [
     image: portfolioLucia,
     description: 'Sitio web para Lucía Salinas, donde muestra su trabajo en diseño gráfico y marketing, y presenta sus servicios.',
     tags: ['HTML', 'Tailwind CSS'],
-    links: [{ label: 'Ver sitio', href: 'https://lucia-salinas.netlify.app' }],
+    links: [],
   },
   {
     title: 'API de un millón de registros',
