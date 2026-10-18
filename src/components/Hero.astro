@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { site } from '../data/site';
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
-const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/foto-portafolio.{jpg,jpeg,png,webp}', { eager: true });
 const photo = Object.values(photos)[0]?.default;
 ---
 
@@ -16,7 +16,7 @@ const photo = Object.values(photos)[0]?.default;
       Desarrollador<br />Fullstack
     </h1>
     <p class="mt-6 max-w-xl text-xl text-muted sm:text-[27px] sm:leading-snug">
-      Construyo sistemas web y APIs con Laravel y Angular.
+      Convierto ideas en sistemas web claros, rápidos y fáciles de mantener.
     </p>
     <div class="mt-9 flex flex-wrap gap-3">
       <a href={site.cv} class="btn-primary" download>Descargar CV</a>

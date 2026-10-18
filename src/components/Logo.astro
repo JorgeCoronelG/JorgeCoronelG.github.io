@@ -1,6 +1,8 @@
 ---
-// Sustituir por <Image src={...LogoJorgeCoronelNegativo.png} /> cuando el archivo esté en src/assets.
+import { Image } from 'astro:assets';
+import logo from '../assets/logotipo-black.png';
+
 const { class: className = '' } = Astro.props;
 ---
 
-<span class:list={['font-serif text-3xl leading-none', className]} aria-hidden="true">JC</span>
+<Image src={logo} alt="" width={96} height={96} class:list={['h-10 w-auto', className]} aria-hidden="true" />

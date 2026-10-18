@@ -1,17 +1,20 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { Project } from '../data/projects';
 import ImagePlaceholder from './ImagePlaceholder.astro';
 
 const { project } = Astro.props as { project: Project };
+const fullImage = project.image ? await getImage({ src: project.image, format: 'webp', quality: 90 }) : undefined;
 ---
 
 <article class="reveal flex flex-col overflow-hidden rounded-[20px] border-2 border-line bg-card shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-hover">
   {
     project.image ? (
-      <Image src={project.image} alt={project.imageAlt ?? `Captura de ${project.title}`} class="h-[230px] w-full border-b border-line object-cover object-top" />
+      <a href={fullImage?.src} target="_blank" rel="noopener noreferrer" class="block" aria-label={`Ver imagen de ${project.title} en una pestaña nueva`}>
+        <Image src={project.image} alt={project.imageAlt ?? `Captura de ${project.title}`} class="aspect-[2/1] w-full border-b border-line object-cover object-top" />
+      </a>
     ) : (
-      <ImagePlaceholder label="Captura del proyecto" window class="h-[230px] border-b border-line" />
+      <ImagePlaceholder label="Captura del proyecto" window class="aspect-[2/1] border-b border-line" />
     )
   }
   <div class="flex flex-1 flex-col p-6">
