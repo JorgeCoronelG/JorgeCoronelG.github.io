@@ -9,6 +9,18 @@ export interface Job {
 
 export const experience: Job[] = [
   {
+    role: 'Desarrollador Fullstack',
+    company: 'Velto (proyecto propio)',
+    location: 'Querétaro',
+    period: '09/2026 – Actualidad',
+    highlights: [
+      'Diseño y desarrollo de una plataforma de administración de torneos de fútbol amateur: panel web en Angular y API REST en Laravel, ya en producción con una liga piloto.',
+      'Despliegue con Docker Compose, HTTPS con Caddy, dominio en Cloudflare, staging y respaldos automáticos de la base de datos.',
+      'CI/CD con GitHub Actions, pruebas unitarias y e2e con Playwright, análisis estático y refuerzo de seguridad del servidor.',
+    ],
+    tags: ['Angular', 'Laravel', 'MySQL', 'Docker', 'GitHub Actions', 'Playwright'],
+  },
+  {
     role: 'Especialista Fullstack',
     company: 'Capi Software',
     location: 'Nuevo León · Remoto',

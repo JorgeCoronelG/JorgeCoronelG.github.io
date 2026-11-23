@@ -1,13 +1,17 @@
 ---
-import { projects } from '../data/projects';
+import { projects, featuredProject } from '../data/projects';
 import { site } from '../data/site';
+import FeaturedProject from './FeaturedProject.astro';
 import ProjectCard from './ProjectCard.astro';
 import SectionHeading from './SectionHeading.astro';
 ---
 
 <section id="proyectos" data-nav="proyectos" aria-labelledby="proyectos-titulo" class="container-page py-16 lg:py-24">
-  <SectionHeading id="proyectos-titulo" eyebrow="Proyectos" title="Lo que he construido" subtitle="Proyectos personales y de práctica, con el código disponible." />
-  <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  <SectionHeading id="proyectos-titulo" eyebrow="Proyectos" title="Lo que he construido" subtitle="Proyectos propios y de práctica; la mayoría con el código disponible." />
+  <div class="mt-12">
+    <FeaturedProject project={featuredProject} />
+  </div>
+  <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     {projects.map((p) => <ProjectCard project={p} />)}
     <article class="reveal flex flex-col items-center justify-center rounded-[20px] border-2 border-btn-line bg-bg p-8 text-center">
       <h3 class="font-serif text-[25px]">Más proyectos</h3>

@@ -1,0 +1,33 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { FeaturedProject } from '../data/projects';
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+const { project } = Astro.props as { project: FeaturedProject };
+const fullImage = project.image ? await getImage({ src: project.image, format: 'webp', quality: 90 }) : undefined;
+---
+
+<article class="reveal grid overflow-hidden rounded-[20px] border-2 border-line bg-card shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-hover lg:grid-cols-[1.1fr_1fr]">
+  {
+    project.image ? (
+      <a href={fullImage?.src} target="_blank" rel="noopener noreferrer" class="flex cursor-pointer items-center border-b border-line bg-bg lg:border-b-0 lg:border-r" aria-label={`Ver imagen de ${project.title} en una pestaña nueva`}>
+        <Image src={project.image} alt={project.imageAlt} class="h-auto w-full" />
+      </a>
+    ) : (
+      <ImagePlaceholder label="Captura del panel de administración" hint="Usar capturas del ambiente de pruebas, sin datos reales" window class="min-h-[260px]" />
+    )
+  }
+  <div class="flex flex-col p-6 sm:p-10">
+    <div class="flex flex-wrap items-center gap-3">
+      <p class="text-sm font-bold uppercase tracking-[0.12em] text-accent">Proyecto destacado</p>
+      <span class="chip-accent px-2.5 py-0.5 text-xs">{project.status}</span>
+    </div>
+    <h3 class="mt-3 font-serif text-4xl leading-tight">{project.title}</h3>
+    <p class="mt-2 font-bold">{project.subtitle}</p>
+    <p class="mt-4 text-base text-muted">{project.description}</p>
+    <ul class="mt-5 flex flex-wrap gap-2" aria-label="Tecnologías">
+      {project.tags.map((t) => <li class="chip">{t}</li>)}
+    </ul>
+    <p class="mt-auto pt-6 text-sm text-muted">{project.note}</p>
+  </div>
+</article>

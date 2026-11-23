@@ -3,6 +3,7 @@ import clubLecturaDashboard from '../assets/projects/club-lectura/dashboard.png'
 import portfolioLucia from '../assets/projects/portfolio-lucia/avance-portfolio.png';
 import millionRecords from '../assets/projects/upload-million-records/batch_info.png';
 import payments from '../assets/projects/pasarela-pagos/pasarela-pagos.png';
+import veltoPanel from '../assets/projects/velto/velto-panel.png';
 import zonelessCalculator from '../assets/projects/calculadora/calculadora-zoneless.png';
 
 export interface ProjectLink {
@@ -68,3 +69,26 @@ export const projects: Project[] = [
     links: [{ label: 'GitHub', href: 'https://github.com/JorgeCoronelG/calculadora-angular-pro' }],
   },
 ];
+
+export interface FeaturedProject {
+  title: string;
+  subtitle: string;
+  status: string;
+  description: string;
+  note: string;
+  tags: string[];
+  image?: ImageMetadata;
+  imageAlt: string;
+}
+
+export const featuredProject: FeaturedProject = {
+  title: 'Velto',
+  subtitle: 'Plataforma de administración de torneos de fútbol amateur',
+  status: 'En producción',
+  description:
+    'Plataforma para terminar con los "cachirules" en las ligas amateur. Desarrollé el panel web (Angular, Tailwind CSS), la API (Laravel, MySQL) y la infraestructura completa: servidor con Docker Compose, HTTPS con Caddy, dominio en Cloudflare, correos con Resend y un ambiente de pruebas separado. Cubre ligas, torneos, inscripciones, plantillas, calendario automático, liguillas, resultados y estadísticas, con pruebas unitarias y e2e. La app móvil en React Native, en desarrollo por otro integrante, consume la misma API. Hoy opera en piloto con una liga local.',
+  note: 'Proyecto privado. Desarrollado con apoyo de Claude Code (código y servidor) y ChatGPT (diseño UI/UX).',
+  tags: ['Angular', 'Laravel', 'MySQL', 'Tailwind CSS', 'Docker', 'Playwright'],
+  imageAlt: 'Panel de administración de Velto',
+  image: veltoPanel,
+};
